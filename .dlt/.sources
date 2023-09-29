@@ -1,0 +1,24 @@
+engine_version: 1
+sources:
+  slack:
+    is_dirty: false
+    last_commit_sha: e1a2e4414d5942b30d2b4ccfa6d2a9e00411231b
+    last_commit_timestamp: '2023-09-27T17:39:41+02:00'
+    files:
+      slack/__init__.py:
+        commit_sha: e1a2e4414d5942b30d2b4ccfa6d2a9e00411231b
+        git_sha: 235c0067aeae2a5a49b2ddf15150fab4e6cacc0e
+        sha3_256: d36ad4422a283fd983a2eda9d362b19877ae0e85bfbbba26e5ef60718c01edae
+      slack/README.md:
+        commit_sha: e1a2e4414d5942b30d2b4ccfa6d2a9e00411231b
+        git_sha: 5ddc904547e5564ff55e99e8b0ee5a7df0b84e56
+        sha3_256: 683e512e8ff9351a3473901f3adf2817df3f5e0dc31a4c0cbf8a919ba8240b01
+      slack/settings.py:
+        commit_sha: e1a2e4414d5942b30d2b4ccfa6d2a9e00411231b
+        git_sha: 34040a9d7fae083db14f4f14201d844531a77678
+        sha3_256: e4a04d12af076ab9701f3e35fe5704eebd4d0f112f4b333e1323b00603e3416e
+      slack/helpers.py:
+        commit_sha: e1a2e4414d5942b30d2b4ccfa6d2a9e00411231b
+        git_sha: d7f14bb8161cefea8e766ea39e1937401edfb419
+        sha3_256: 28a11ccf53342274b8ebc6610c36d57c9efd01baf51dec4762e05f52f5b32897
+    dlt_version_constraint: <0.4.0,>=0.3.12
