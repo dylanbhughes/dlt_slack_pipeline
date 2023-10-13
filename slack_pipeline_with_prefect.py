@@ -5,10 +5,12 @@ from typing import List
 import dlt
 import pendulum
 from pendulum import datetime
+from prefect import flow, task
 
 from slack import slack_source
 
 
+@task
 def load_channels() -> None:
     """Execute a pipeline that will load a list of all the Slack channels in the
     workspace to BigQuery"""
@@ -27,6 +29,7 @@ def load_channels() -> None:
     print(load_info)
 
 
+@task
 def get_resources() -> List[str]:
     """Fetch a list of available dlt resources so we can fetch them one at a time"""
     resource_dict = slack_source(
@@ -42,6 +45,7 @@ def get_resources() -> List[str]:
     return resource_dict.keys()
 
 
+@task
 def load_channel_history(channel: str, start_date: datetime) -> None:
     """Execute a pipeline that will load the given Slack channel
     incrementally beginning at the given start date."""
@@ -64,6 +68,7 @@ def load_channel_history(channel: str, start_date: datetime) -> None:
     print(load_info)
 
 
+@task
 def get_users() -> None:
     """Execute a pipeline that will load Slack users list."""
 
@@ -81,10 +86,10 @@ def get_users() -> None:
     print(load_info)
 
 
-if __name__ == "__main__":
-    channels = None
-    start_date = pendulum.now().subtract(days=1).date()
-
+@flow
+def slack_pipeline(
+    channels=None, start_date=pendulum.now().subtract(days=1).date()
+) -> None:
     load_channels()
 
     resources = get_resources()
@@ -95,3 +100,7 @@ if __name__ == "__main__":
         load_channel_history(resource, start_date=start_date)
 
     get_users()
+
+
+if __name__ == "__main__":
+    slack_pipeline.serve("slack_pipeline")
